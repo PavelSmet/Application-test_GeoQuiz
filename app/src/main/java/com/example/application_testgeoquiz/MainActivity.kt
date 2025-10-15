@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ApplicationtestGeoQuizTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GeoQuizApp(modifier = Modifier.padding(innerPadding)
+                    TopLevel(modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
