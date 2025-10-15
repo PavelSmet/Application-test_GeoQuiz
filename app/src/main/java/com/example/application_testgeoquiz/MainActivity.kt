@@ -52,10 +52,3 @@ fun TopLevel(
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ApplicationtestGeoQuizTheme {
-        Greeting("Android")
-    }
-}
