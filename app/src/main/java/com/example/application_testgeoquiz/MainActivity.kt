@@ -9,9 +9,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
 import com.example.application_testgeoquiz.ui.theme.ApplicationtestGeoQuizTheme
+
+class QuziViewModel : ViewModel() {
+    var score by mutableStateOf(0)
+        private set
+
+    var currentQuestionIndex by mutableStateOf(0)
+        private set
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ApplicationtestGeoQuizTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GeoQuizApp(
-                        modifier = Modifier.padding(innerPadding)
+                    GeoQuizApp(modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
