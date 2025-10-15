@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ApplicationtestGeoQuizTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    GeoQuizApp(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
