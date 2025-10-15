@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application_testgeoquiz.ui.theme.ApplicationtestGeoQuizTheme
+import kotlin.time.Duration.Companion.seconds
 
 class QuziViewModel : ViewModel() {
     var score by mutableStateOf(0)
@@ -24,6 +25,23 @@ class QuziViewModel : ViewModel() {
 
     var currentQuestionIndex by mutableStateOf(0)
         private set
+
+    private val questions = listOf(
+        "Canberra is the capital of Australia." to true,
+        "The Pacific Ocean is larger than the Atlantic Ocean?" to true,
+        "The Suez Canal connects the Red Sea and the Indian Ocean." to false,
+        "The source of the Nile River is in Egypt." to false,
+        "The Amazon River is the longest river in the Americas." to true,
+        "Lake Baikal is the world's oldest and deepest freshwater lake." to true
+    )
+    val currentQuestion : String
+        get() = questions[currentQuestionIndex].first
+
+    val currentAnswer : Boolean
+        get() = questions[currentQuestionIndex].second
+
+    val totalQuestions : Int
+        get() = questions.size
 }
 
 class MainActivity : ComponentActivity() {
@@ -51,4 +69,3 @@ fun TopLevel(
         modifier = modifier
     )
 }
-
