@@ -141,7 +141,7 @@ fun TopLevel(
             }
         }
 
-        if(!viewModel.userAnswered && !viewModel.isLastQuestion) {
+        if(viewModel.userAnswered && !viewModel.isLastQuestion) {
             Button(
                 onClick = { viewModel.nextQuestion() },
                 modifier = Modifier.padding(top = 32.dp)
@@ -149,5 +149,15 @@ fun TopLevel(
                 Text("Next")
             }
         }
+
+        if(viewModel.userAnswered && viewModel.isLastQuestion) {
+            Button(
+                onClick = { viewModel.finishQuiz() },
+                modifier = Modifier.padding(top = 32.dp)
+            ) {
+                Text("Finish Quiz")
+            }
+        }
+
     }
 }
