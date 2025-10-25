@@ -32,6 +32,9 @@ class QuziViewModel : ViewModel() {
     var currentQuestionIndex by mutableStateOf(0)
         private set
 
+    var userAnswered by mutableStateOf(False)
+        private set
+
     private val questions = listOf(
         "Canberra is the capital of Australia." to true,
         "The Pacific Ocean is larger than the Atlantic Ocean?" to true,
