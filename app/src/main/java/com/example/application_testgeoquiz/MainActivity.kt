@@ -48,6 +48,24 @@ class QuziViewModel : ViewModel() {
 
     val totalQuestions : Int
         get() = questions.size
+
+    val isLastQuestion : Boolean
+        get() = currentQuestionIndex == questions.size - 1
+
+    fun answerQuestion(userAnswer: Boolean) {
+        if(!userAnswered) {
+            if(userAnswer == currentAnswer) {
+                score++
+            }
+            userAnswered = true
+        }
+    }
+    fun nextQuestion() {
+        if (currentQuestionIndex < questions.size - 1) {
+            currentQuestionIndex++
+            userAnswered = false
+        }
+    }
 }
 
 class MainActivity : ComponentActivity() {
