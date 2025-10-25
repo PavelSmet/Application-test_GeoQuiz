@@ -35,7 +35,7 @@ class QuziViewModel : ViewModel() {
     var currentQuestionIndex by mutableStateOf(0)
         private set
 
-    var userAnswered by mutableStateOf(False)
+    var userAnswered by mutableStateOf(false)
         private set
 
     private val questions = listOf(
@@ -73,6 +73,19 @@ class QuziViewModel : ViewModel() {
             userAnswered = false
         }
     }
+    var showScoreDialog by mutableStateOf(false)
+        private set
+
+        fun finishQuiz() {
+            showScoreDialog = true
+        }
+
+        fun restartQuiz() {
+            currentQuestionIndex = 0
+            score = 0
+            userAnswered = false
+            showScoreDialog = false
+        }
 }
 
 class MainActivity : ComponentActivity() {
@@ -104,7 +117,7 @@ fun TopLevel(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = ViewModel.currentQuestion,
+            text = viewModel.currentQuestion,
             fontSize = 20.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 32.dp)
@@ -112,7 +125,7 @@ fun TopLevel(
 
         if(!viewModel.userAnswered) {
             Row(
-                horizontalArragment = Arrangement.spacedBy(16.dp)
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Button(
                     onClick = { viewModel.answerQuestion(true) }
@@ -126,6 +139,7 @@ fun TopLevel(
                     Text("False")
                 }
             }
+        }
 
         if(!viewModel.userAnswered && !viewModel.isLastQuestion) {
             Button(
