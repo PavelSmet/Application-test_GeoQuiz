@@ -113,27 +113,30 @@ fun TopLevel(
             modifier = Modifier.padding(bottom = 32.dp)
         )
 
-        Row(
-            horizontalArragment = Arrangement.spacedBy(16.dp)
-        ) {
-            Button(
-                onClick = { "" }
+        if(!viewModel.userAnswered) {
+            Row(
+                horizontalArragment = Arrangement.spacedBy(16.dp)
             ) {
-                Text("True")
+                Button(
+                    onClick = { "" }
+                ) {
+                    Text("True")
+                }
+
+                Button(
+                    onClick = { "" }
+                ) {
+                    Text("False")
+                }
             }
 
+        if(!viewModel.userAnswered && !viewModel.isLastQuestion) {
             Button(
-                onClick = { "" }
+                onClick = { "" },
+                modifier = Modifier.padding(top = 32.dp)
             ) {
-                Text("False")
+                Text("Next")
             }
-        }
-
-        Button(
-            onClick = { "" },
-            modifier = Modifier.padding(top = 32.dp)
-        ) {
-            Text("Next")
         }
     }
 }
