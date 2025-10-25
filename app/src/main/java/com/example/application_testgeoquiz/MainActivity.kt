@@ -24,6 +24,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application_testgeoquiz.ui.theme.ApplicationtestGeoQuizTheme
 import kotlin.time.Duration.Companion.seconds
+import androidx.compose.foundation.layout.Row
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 class QuziViewModel : ViewModel() {
     var score by mutableStateOf(0)
@@ -63,6 +66,7 @@ class QuziViewModel : ViewModel() {
             userAnswered = true
         }
     }
+
     fun nextQuestion() {
         if (currentQuestionIndex < questions.size - 1) {
             currentQuestionIndex++
@@ -100,7 +104,7 @@ fun TopLevel(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = ViewModel.currentWuestion,
+            text = ViewModel.currentQuestion,
             fontSize = 20.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 32.dp)
@@ -111,13 +115,13 @@ fun TopLevel(
                 horizontalArragment = Arrangement.spacedBy(16.dp)
             ) {
                 Button(
-                    onClick = { "" }
+                    onClick = { viewModel.answerQuestion(true) }
                 ) {
                     Text("True")
                 }
 
                 Button(
-                    onClick = { "" }
+                    onClick = { viewModel.answerQuestion(false) }
                 ) {
                     Text("False")
                 }
@@ -125,7 +129,7 @@ fun TopLevel(
 
         if(!viewModel.userAnswered && !viewModel.isLastQuestion) {
             Button(
-                onClick = { "" },
+                onClick = { viewModel.nextQuestion() },
                 modifier = Modifier.padding(top = 32.dp)
             ) {
                 Text("Next")
