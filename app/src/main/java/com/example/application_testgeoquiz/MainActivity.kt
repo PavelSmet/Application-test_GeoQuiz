@@ -86,16 +86,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun TopLevel(
-    modifier: Modifier = Modifier,
-    viewModel : QuziViewModel = viewModel()
-) {
-    Text(
-        text = "Score : ${viewModel.score}",
-        modifier = modifier
-    )
-}
 
 @Composable
 fun TopLevel(
