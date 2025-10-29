@@ -27,6 +27,7 @@ import kotlin.time.Duration.Companion.seconds
 import androidx.compose.foundation.layout.Row
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material3.AlertDialog
 
 class QuziViewModel : ViewModel() {
     var score by mutableStateOf(0)
@@ -109,6 +110,21 @@ fun TopLevel(
     modifier: Modifier = Modifier,
     viewModel: QuziViewModel = viewModel()
 ) {
+    if (viewModel.showScoreDialog) {
+        AlertDialog(
+            onDismissRequest = { viewModel.restartQuiz() },
+            title = { Text("Quiz Completed!") },
+            text = {
+                Text("Your final score: ${viewModel.score}/${viewModel.totalQuestions}")
+            },
+            confirmButton = {
+                Button(onClick = { viewModel.restartQuiz() }) {
+                    Text("Play Again")
+                }
+            }
+        )
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
